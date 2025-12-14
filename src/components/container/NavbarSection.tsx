@@ -11,10 +11,11 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between px-4 md:px-12">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-linear-to-tr from-[#FF6B3D] to-[#FF9066] rounded-md flex items-center justify-center">
-            <div className="w-4 h-4 bg-white rounded-sm rotate-12" />
-          </div>
-          <span className="text-white text-xl font-bold tracking-tight">Your Logo</span>
+          <img
+            src="/assets/images/Logo.svg"
+            alt="Logo"
+            className="w-50 h-10 object-contain"
+          />
         </div>
         {/* Burger Icon */}
         <button
@@ -62,10 +63,11 @@ export default function Navbar() {
               {/* Logo and Close */}
               <div className="flex items-center justify-between px-6 pt-6 pb-8">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-linear-to-tr from-[#FF6B3D] to-[#FF9066] rounded-md flex items-center justify-center">
-                    <div className="w-4 h-4 bg-white rounded-sm rotate-12" />
-                  </div>
-                  <span className="text-white text-xl font-bold tracking-tight">Your Logo</span>
+                  <img
+                    src="/assets/images/Logo.svg"
+                    alt="Logo"
+                    className="w-50 h-10 object-contain"
+                  />
                 </div>
                 <button className="w-8 h-8 flex items-center justify-center" onClick={() => setOpen(false)} aria-label="Close menu">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
