@@ -1,10 +1,9 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../../App";
 
-export default function Navbar() {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
-  // Handler untuk dark mode (dummy, bisa dihubungkan ke context/theme provider)
-  const [dark, setDark] = useState(false);
-  const handleToggleDark = () => setDark((d) => !d);
+  const { dark, toggleDark } = useContext(ThemeContext);
 
   return (
     <nav className="w-full bg-transparent py-6 fixed top-0 left-0 z-20">
@@ -39,7 +38,7 @@ export default function Navbar() {
           <a href="#faq" className="px-7 py-2 rounded-full bg-linear-to-r from-[#FF6B3D] to-[#FF9066] text-white font-semibold shadow hover:from-[#ff7a4d] hover:to-[#ffb088] transition text-base">Let's Talk</a>
           <button
             className="flex items-center justify-center text-white hover:text-yellow-400 transition text-2xl"
-            onClick={handleToggleDark}
+            onClick={toggleDark}
             aria-label="Toggle dark mode"
           >
             {dark ? "🌙" : "🌞"}
@@ -84,7 +83,7 @@ export default function Navbar() {
               <div className="px-6 mt-8 flex flex-col gap-4">
                 <button
                   className="w-full block text-white hover:text-yellow-400 transition text-2xl text-center"
-                  onClick={handleToggleDark}
+                  onClick={toggleDark}
                   aria-label="Toggle dark mode"
                 >
                   {dark ? "🌙" : "🌞"}
@@ -97,4 +96,7 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+
+};
+
+export default Navbar;

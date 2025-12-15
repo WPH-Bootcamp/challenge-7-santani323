@@ -1,43 +1,41 @@
-import Navbar from "./components/container/NavbarSection";
-import Hero from "./components/container/HeroSection";
-import About from "./components/container/AboutSection";
-import Service from "./components/container/ServiceSection";
-import Projects from "./components/container/ProjectsSection";
-import Testimonials from "./components/container/TestimonialsSection";
-import FAQ from "./components/container/FAQSection";
+import { useEffect, useState, createContext, useMemo } from "react";
 
-import { useEffect } from "react";
+export const ThemeContext = createContext({
+  dark: false,
+  toggleDark: () => {},
+});
 
 function App() {
+  const [isDark, setIsDark] = useState(true);
+
   useEffect(() => {
-    document.documentElement.style.scrollBehavior = "smooth";
-    return () => {
-      document.documentElement.style.scrollBehavior = "auto";
-    };
+    // Load theme from localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      setIsDark(false);
+      document.documentElement.classList.remove("dark");
+    } else {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    }
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+
+    if (newTheme) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
   return (
-    <div className="relative min-h-screen bg-[#18111A]">
-      <Navbar />
-      <main>
-        <section id="hero">
-          <Hero />
-        </section>
-        <section id="about">
-          <About />
-        </section>
-        <section id="service">
-          <Service />
-        </section>
-        <section id="projects">
-          <Projects />
-        </section>
-        <section id="testimonials">
-          <Testimonials />
-        </section>
-        <section id="faq">
-          <FAQ />
-        </section>
-      </main>
+    <div className={`App ${isDark ? "dark" : ""}`}>
+      <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0B0B0E] transition-colors duration-300"></div>
     </div>
   );
 }
