@@ -1,6 +1,6 @@
 import React from "react";
 
-const TrustedBy = () => {
+const TrustedBy = ({ isDark }) => {
   const companies = [
     { name: "Company A", logo: "A" },
     { name: "Company B", logo: "B" },
@@ -11,7 +11,7 @@ const TrustedBy = () => {
   ];
 
   return (
-    <section className="py-16 bg-[#0B0B0E]">
+    <section className={isDark ? "py-16 bg-[#0B0B0E]" : "py-16 bg-white"}>
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -24,12 +24,27 @@ const TrustedBy = () => {
         </div>
 
         {/* Slider Container */}
+
         <div className="relative overflow-hidden rounded-2xl">
           {/* LEFT BLUR */}
-          <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-[#0B0B0E] via-[#0B0B0E]/80 to-transparent backdrop-blur-sm" />
+          <div
+            className={
+              "pointer-events-none absolute left-0 top-0 z-10 h-full w-24 backdrop-blur-sm " +
+              (isDark
+                ? "bg-gradient-to-r from-[#0B0B0E] via-[#0B0B0E]/80 to-transparent"
+                : "bg-gradient-to-r from-white via-white/80 to-transparent")
+            }
+          />
 
           {/* RIGHT BLUR */}
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-[#0B0B0E] via-[#0B0B0E]/80 to-transparent backdrop-blur-sm" />
+          <div
+            className={
+              "pointer-events-none absolute right-0 top-0 z-10 h-full w-24 backdrop-blur-sm " +
+              (isDark
+                ? "bg-gradient-to-l from-[#0B0B0E] via-[#0B0B0E]/80 to-transparent"
+                : "bg-gradient-to-l from-white via-white/80 to-transparent")
+            }
+          />
 
           {/* Slider */}
           <div className="flex gap-8 py-4 animate-trusted-slider">

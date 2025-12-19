@@ -1,33 +1,32 @@
-import { useEffect, useState, createContext, useMemo } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme, setTheme } from "./store/slices/themeSlice";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/container/HeroSection/index";
-import TrustedBy from "./components/container/TrustedBy/index"; 
-
-export const ThemeContext = createContext({
-  dark: false,
-  toggleDark: () => {},
-});
+import TrustedBy from "./components/container/TrustedBy/index";
+import Statistics from "./components/container/Statistics/index";
 
 function App() {
-  const [isDark, setIsDark] = useState(true);
+  const dispatch = useDispatch();
+  const isDark = useSelector((state: any) => state.theme.isDark);
 
   useEffect(() => {
     // Load theme from localStorage
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") {
-      setIsDark(false);
+      dispatch(setTheme(false));
       document.documentElement.classList.remove("dark");
     } else {
-      setIsDark(true);
+      dispatch(setTheme(true));
       document.documentElement.classList.add("dark");
     }
-  }, []);
+    // eslint-disable-next-line
+  }, [dispatch]);
 
-  const toggleTheme = () => {
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
     const newTheme = !isDark;
-    setIsDark(newTheme);
-
     if (newTheme) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -40,10 +39,10 @@ function App() {
   return (
     <div className={`App ${isDark ? "dark" : ""}`}>
       <div className="min-h-screen bg-[#f9f9fb] dark:bg-[#0B0B0E] transition-colors duration-300">
-        {" "}
-        <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-        <Hero />
-        <TrustedBy />
+        <Navbar isDark={isDark} toggleTheme={handleToggleTheme} />
+        <Hero isDark={isDark} />
+        <TrustedBy isDark={isDark} />
+        <Statistics isDark={isDark} />
       </div>
     </div>
   );
