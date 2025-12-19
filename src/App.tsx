@@ -8,6 +8,7 @@ import TrustedBy from "./components/container/TrustedBy/index";
 import Statistics from "./components/container/Statistics/index";
 import Process from "./components/container/Process/index";
 import Services from "./components/container/Services/index";
+import Industry from "./components/container/Industry/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
         <Statistics isDark={isDark} />
         <Process isDark={isDark} />
         <Services isDark={isDark} />
+        <Industry isDark={isDark} />
       </div>
     </div>
   );

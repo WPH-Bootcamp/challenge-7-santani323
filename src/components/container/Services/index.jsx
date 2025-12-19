@@ -9,20 +9,49 @@ const Services = () => {
     },
     {
       icon: "assets/images/Mobile.svg",
-      title: "Mobile Development",
-      description: "High-quality mobile apps for Android and iOS platforms.",
+      title: "Mobile App Development",
+      description: "Native & cross-platform apps tailored to user needs.",
+    },
+    {
+      icon: "assets/images/UXDesign.svg",
+      title: "UI/UX Design",
+      description: "Delight users with intuitive and beautiful interfaces.",
     },
     {
       icon: "assets/images/Cloud.svg",
       title: "Cloud Solutions",
-      description: "Secure and scalable cloud infrastructure solutions.",
+      description: "Secure and flexible cloud infrastructure for your growth.",
+    },
+    {
+      icon: "assets/images/Software.svg",
+      title: "Software Development",
+      description: "Custom solutions built around your business logic.",
+    },
+    {
+      icon: "assets/images/Infrastructure.svg",
+      title: "IT Infrastructure",
+      description: "Scale your backend with reliable tech foundations.",
+    },
+    {
+      icon: "assets/images/Security.svg",
+      title: "Cybersecurity Services",
+      description: "Stay protected with enterprise-grade security.",
+    },
+    {
+      icon: "assets/images/QA.svg",
+      title: "QA Solutions",
+      description: "Ensure performance with rigorous testing frameworks.",
+    },
+    {
+      icon: "assets/images/Consulting.svg",
+      title: "IT Consulting & Support",
+      description: "Make smarter tech decisions with expert guidance.",
     },
   ];
 
   return (
     <section id="services" className="py-20 bg-[#0B0B0E]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* HEADER */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -53,40 +82,36 @@ const Services = () => {
               "
             >
               {/* HOVER BORDER */}
-              <div className="
-                absolute
-                inset-0
-                rounded-2xl
-                border-2
-                border-transparent
-                group-hover:border-[#FF6A00]
-                transition-colors
-                duration-300
-              " />
+              <div
+                className="
+                  absolute
+                  inset-0
+                  rounded-2xl
+                  border-2
+                  border-transparent
+                  group-hover:border-[#FF6A00]
+                  transition-colors
+                  duration-300
+                "
+              />
 
-              {/* FLOATING ICON */}
-              <div className="
-                absolute
-                -top-8
-                left-8
-                w-16
-                h-16
-                rounded-xl
-                bg-gradient-to-br
-                from-[#FF6A00]
-                to-[#FF8C00]
-                flex
-                items-center
-                justify-center
-                shadow-lg
-                transition-all
-                duration-300
-                group-hover:scale-110
-              ">
+              {/* FLOATING ICON (NO COLOR BACKGROUND) */}
+              <div
+                className="
+                  absolute
+                  -top-8
+                  left-8
+                  w-20
+                  h-20
+                  flex
+                  items-center
+                  justify-center
+                "
+              >
                 <img
                   src={service.icon}
                   alt={service.title}
-                  className="w-8 h-8 brightness-0 invert"
+                  className="w-50 h-50 object-contain"
                 />
               </div>
 
@@ -102,7 +127,6 @@ const Services = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
