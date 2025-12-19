@@ -7,6 +7,7 @@ import Hero from "./components/container/HeroSection/index";
 import TrustedBy from "./components/container/TrustedBy/index";
 import Statistics from "./components/container/Statistics/index";
 import Process from "./components/container/Process/index";
+import Services from "./components/container/Services/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
         <TrustedBy isDark={isDark} />
         <Statistics isDark={isDark} />
         <Process isDark={isDark} />
+        <Services isDark={isDark} />
       </div>
     </div>
   );
