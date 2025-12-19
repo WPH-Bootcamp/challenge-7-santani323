@@ -19,10 +19,12 @@ const Navbar = ({ isDark, toggleTheme }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#FF6A00] to-[#FF8C00] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">T</span>
-            </div>
-            <span className="text-white font-bold text-xl">TechGrowth</span>
+            <img
+              src="/assets/images/Logo.svg"
+              alt="Logo"
+              className="w-50 h-10 object-contain rounded-lg"
+            />
+           
           </div>
 
           {/* Desktop Menu */}

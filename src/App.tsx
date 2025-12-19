@@ -1,6 +1,8 @@
 import { useEffect, useState, createContext, useMemo } from "react";
+import "./App.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/container/HeroSection/index";
+import TrustedBy from "./components/container/TrustedBy/index"; 
 
 export const ThemeContext = createContext({
   dark: false,
@@ -37,10 +39,11 @@ function App() {
 
   return (
     <div className={`App ${isDark ? "dark" : ""}`}>
-      <div className="min-h-screen bg-[#F9FAFB] dark:bg-[#0B0B0E] transition-colors duration-300">
+      <div className="min-h-screen bg-[#f9f9fb] dark:bg-[#0B0B0E] transition-colors duration-300">
         {" "}
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
         <Hero />
+        <TrustedBy />
       </div>
     </div>
   );
