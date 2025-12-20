@@ -1,53 +1,66 @@
 import React from "react";
+import { ArrowRight } from "lucide-react";
 
 const Hero = ({ isDark }) => {
+  // Gunakan warna #050505 agar benar-benar menyatu dengan background gambar gelap
+  const bgColor = isDark ? "bg-[#050505]" : "bg-white";
+  const textColor = isDark ? "text-white" : "text-gray-900";
+  const subTextColor = isDark ? "text-gray-400" : "text-gray-600";
+
   return (
-    <section className="relative w-full min-h-screen bg-gray-50 dark:bg-black overflow-hidden flex flex-col md:flex-row">
-      {/* Left Content */}
-      <div className="flex-1 flex items-center justify-center md:justify-start px-6 md:px-16 py-12 md:py-0">
-        <div className="text-center md:text-left max-w-xl">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-            Selamat Datang di Website Kami
-          </h1>
+    <section 
+      id="home" 
+      className={`relative w-full min-h-screen ${bgColor} overflow-hidden flex items-center transition-colors duration-500`}
+    >
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-100">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Left Content */}
+          <div className="space-y-8 animate-in fade-in slide-in-from-left duration-1000">
+            <div className="space-y-6">
+              <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] ${textColor}`}>
+                Your Tech Partner for{" "}
+                <span className="text-[#FF6A00] block">Smarter Growth</span>
+              </h1>
+              <p className={`text-lg md:text-xl max-w-lg leading-relaxed ${subTextColor}`}>
+                We deliver tailored IT solutions to help you scale with speed and confidence.
+              </p>
+            </div>
 
-          <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg md:text-xl">
-            Kami menghadirkan solusi kreatif dan inovatif untuk pengembangan web
-            dan desain digital.
-          </p>
-
-          <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-            <a
-              href="#about"
-              className="px-6 py-3 bg-orange-500 text-white font-semibold rounded-full shadow hover:opacity-90 transition"
-            >
-              Pelajari Lebih Lanjut
-            </a>
-
-            <a
-              href="#contact"
-              className="px-6 py-3 border border-orange-500 text-orange-500 rounded-full font-semibold hover:bg-orange-500 hover:text-white transition"
-            >
-              Hubungi Kami
-            </a>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <a
+                href="#contact"
+                className="inline-flex items-center px-10 py-4 bg-[#FF6A00] hover:bg-[#FF7A10] text-white rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 shadow-xl shadow-[#FF6A00]/20"
+              >
+                Let's Talk
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </a>
+            </div>
           </div>
+
         </div>
       </div>
 
-      {/* Right Image */}
-      <div className="flex-1 relative w-full h-64 md:h-auto">
-        <img
-          src={
-            isDark
-              ? "/assets/images/hero-dark.png"
-              : "/assets/images/hero-light.png"
-          }
-          alt="Hero Illustration"
-          className="h-full w-full object-cover"
-        />
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-y-0 left-0 w-32 md:w-64 bg-gradient-to-l from-transparent to-gray-50 dark:to-black" />
+      {/* Right Image - Mentok Kanan & Sangat Besar */}
+      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[60%] pointer-events-none overflow-hidden">
+        <div className="relative h-full w-full">
+          <img
+            src={isDark ? "/assets/images/hero-dark.png" : "/assets/images/hero-light.png"}
+            alt="Hero Illustration"
+            className="h-full w-full object-contain object-right scale-110 lg:scale-125 translate-x-[5%]"
+          />
+          
+          {/* Gradient Masking: Menghilangkan garis kotak gambar di sisi kiri */}
+          <div className={`absolute inset-y-0 left-0 w-full lg:w-1/2 bg-gradient-to-r ${
+            isDark ? "from-[#050505] via-[#050505]/50" : "from-white via-white/50"
+          } to-transparent z-10`} />
+        </div>
       </div>
+
+      {/* Glow Ambient tambahan agar lebih dramatis */}
+      <div className={`absolute -right-20 top-1/4 w-[500px] h-[500px] rounded-full blur-[150px] opacity-20 pointer-events-none ${
+        isDark ? "bg-[#FF6A00]" : "bg-[#FF6A00]/40"
+      }`} />
     </section>
   );
 };
