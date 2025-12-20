@@ -1,86 +1,80 @@
 import React from "react";
 
 const TrustedBy = ({ isDark }) => {
-  const companies = [
-    { name: "Company A", logo: "A" },
-    { name: "Company B", logo: "B" },
-    { name: "Company C", logo: "C" },
-    { name: "Company D", logo: "D" },
-    { name: "Company E", logo: "E" },
-    { name: "Company F", logo: "F" },
+  // 1. Data logo disimpan dalam variabel (Array of Objects)
+  const brands = [
+    { name: "Adobe", src: "/assets/images/logos/adobe.svg" },
+    { name: "Upwork", src: "/assets/images/logos/upwork.svg" },
+    { name: "Zoom", src: "/assets/images/logos/zoom.svg" },
+    { name: "Postman", src: "/assets/images/logos/postman.svg" },
+    { name: "Databricks", src: "/assets/images/logos/databricks.svg" },
+    { name: "Airbnb", src: "/assets/images/logos/airbnb.svg" },
+    { name: "Dropbox", src: "/assets/images/logos/dropbox.svg" },
+    { name: "PayPal", src: "/assets/images/logos/paypal.svg" },
+    { name: "Netflix", src: "/assets/images/logos/netflix.svg" },
   ];
 
+  // Duplikasi data untuk animasi looping yang mulus
+  const allBrands = [...brands, ...brands];
+
   return (
-    <section className={isDark ? "py-16 bg-[#0B0B0E]" : "py-16 bg-white"}>
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <p className="text-gray-400 text-sm uppercase tracking-wider mb-4">
-            Trusted By
-          </p>
-          <h2 className="text-2xl md:text-3xl font-bold text-white">
-            Leading Brands Worldwide
-          </h2>
-        </div>
+    <section
+      className={`w-full py-12 relative overflow-hidden transition-colors duration-500 ${
+        isDark ? "bg-black" : "bg-gray-100"
+      }`}
+    >
+      <div className="container mx-auto px-6 md:px-12 text-center relative">
+        <h2
+          className={`text-lg font-semibold mb-10 transition-colors ${
+            isDark ? "text-white" : "text-gray-800"
+          }`}
+        >
+          Trusted by Global Innovators & Leading Brands
+        </h2>
 
-        {/* Slider Container */}
-
-        <div className="relative overflow-hidden rounded-2xl">
-          {/* LEFT BLUR */}
-          <div
-            className={
-              "pointer-events-none absolute left-0 top-0 z-10 h-full w-24 backdrop-blur-sm " +
-              (isDark
-                ? "bg-gradient-to-r from-[#0B0B0E] via-[#0B0B0E]/80 to-transparent"
-                : "bg-gradient-to-r from-white via-white/80 to-transparent")
-            }
-          />
-
-          {/* RIGHT BLUR */}
-          <div
-            className={
-              "pointer-events-none absolute right-0 top-0 z-10 h-full w-24 backdrop-blur-sm " +
-              (isDark
-                ? "bg-gradient-to-l from-[#0B0B0E] via-[#0B0B0E]/80 to-transparent"
-                : "bg-gradient-to-l from-white via-white/80 to-transparent")
-            }
-          />
-
-          {/* Slider */}
-          <div className="flex gap-8 py-4 animate-trusted-slider">
-            {[...companies, ...companies].map((company, index) => (
-              <div
+        {/* Wrapper Carousel */}
+        <div className="relative w-full overflow-hidden">
+          {/* Track bergerak */}
+          <div className="flex items-center gap-12 animate-scroll-slow whitespace-nowrap w-max">
+            {allBrands.map((brand, index) => (
+              <img
                 key={index}
-                className="flex-shrink-0 w-24 h-24 bg-[#121216] rounded-xl flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 cursor-pointer group"
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-600 to-gray-800 group-hover:from-[#FF6A00] group-hover:to-[#FF8C00] rounded-lg flex items-center justify-center transition-all duration-300">
-                  <span className="text-white font-bold text-2xl">
-                    {company.logo}
-                  </span>
-                </div>
-              </div>
+                src={brand.src}
+                alt={brand.name}
+                className="h-8 md:h-10 grayscale hover:grayscale-0 transition-all duration-300 inline-block cursor-pointer opacity-70 hover:opacity-100"
+              />
             ))}
           </div>
+
+          {/* Efek blur gradasi kiri dan kanan */}
+          <div
+            className={`absolute left-0 top-0 h-full w-24 md:w-40 bg-gradient-to-r pointer-events-none z-10 ${
+              isDark ? "from-black" : "from-gray-100"
+            } to-transparent`}
+          />
+
+          <div
+            className={`absolute right-0 top-0 h-full w-24 md:w-40 bg-gradient-to-l pointer-events-none z-10 ${
+              isDark ? "from-black" : "from-gray-100"
+            } to-transparent`}
+          />
         </div>
       </div>
 
-      {/* Animation */}
-      <style>
-        {`
-          @keyframes trusted-slider {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-
-          .animate-trusted-slider {
-            animation: trusted-slider 30s linear infinite;
-          }
-        `}
-      </style>
+      {/* Inlining Style untuk animasi (Bisa dipindah ke index.css) */}
+      <style>{`
+        @keyframes scroll-slow {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-slow {
+          display: flex;
+          animation: scroll-slow 30s linear infinite;
+        }
+        .animate-scroll-slow:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 };

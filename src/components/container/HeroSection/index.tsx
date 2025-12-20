@@ -2,8 +2,8 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 
 const Hero = ({ isDark }) => {
-  // Gunakan warna #050505 agar benar-benar menyatu dengan background gambar gelap
-  const bgColor = isDark ? "bg-[#050505]" : "bg-white";
+  // Warna latar belakang yang sangat spesifik agar menyatu dengan aset gambar
+  const bgColor = isDark ? "bg-[#050505]" : "bg-[#fcfcfc]";
   const textColor = isDark ? "text-white" : "text-gray-900";
   const subTextColor = isDark ? "text-gray-400" : "text-gray-600";
 
@@ -12,11 +12,12 @@ const Hero = ({ isDark }) => {
       id="home" 
       className={`relative w-full min-h-screen ${bgColor} overflow-hidden flex items-center transition-colors duration-500`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-100">
+      {/* Container Konten Utama */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-30">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           
-          {/* Left Content */}
-          <div className="space-y-8 animate-in fade-in slide-in-from-left duration-1000">
+          {/* Left Content - Z-index Tinggi agar di atas gambar pada mobile */}
+          <div className="space-y-8 animate-in fade-in slide-in-from-left duration-1000 relative z-40">
             <div className="space-y-6">
               <h1 className={`text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] ${textColor}`}>
                 Your Tech Partner for{" "}
@@ -37,28 +38,32 @@ const Hero = ({ isDark }) => {
               </a>
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* Right Image - Mentok Kanan & Sangat Besar */}
-      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[60%] pointer-events-none overflow-hidden">
-        <div className="relative h-full w-full">
+      {/* Area Gambar - Posisi Absolute agar bisa mentok kanan & masuk ke bawah teks */}
+      <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[70%] z-10 pointer-events-none">
+        <div className="relative h-full w-full flex justify-end items-center">
+          
+          {/* Masking Gradient - Menghilangkan Garis Tengah */}
+          {/* Gradient ini memanjang dari kiri ke tengah untuk menghapus batas gambar */}
+          <div className={`absolute inset-0 z-20 bg-gradient-to-r 
+            ${isDark 
+              ? "from-[#050505] via-[#050505]/80 to-transparent" 
+              : "from-[#fcfcfc] via-[#fcfcfc]/90 to-transparent"
+            } lg:w-3/4`} 
+          />
+
           <img
             src={isDark ? "/assets/images/hero-dark.png" : "/assets/images/hero-light.png"}
             alt="Hero Illustration"
-            className="h-full w-full object-contain object-right scale-110 lg:scale-125 translate-x-[5%]"
+            className="h-full w-full object-contain object-right scale-110 lg:scale-150 translate-x-[10%] select-none"
           />
-          
-          {/* Gradient Masking: Menghilangkan garis kotak gambar di sisi kiri */}
-          <div className={`absolute inset-y-0 left-0 w-full lg:w-1/2 bg-gradient-to-r ${
-            isDark ? "from-[#050505] via-[#050505]/50" : "from-white via-white/50"
-          } to-transparent z-10`} />
         </div>
       </div>
 
-      {/* Glow Ambient tambahan agar lebih dramatis */}
-      <div className={`absolute -right-20 top-1/4 w-[500px] h-[500px] rounded-full blur-[150px] opacity-20 pointer-events-none ${
+      {/* Decorative Glow Ambient */}
+      <div className={`absolute right-0 top-1/4 w-[600px] h-[600px] rounded-full blur-[160px] opacity-25 pointer-events-none z-0 ${
         isDark ? "bg-[#FF6A00]" : "bg-[#FF6A00]/40"
       }`} />
     </section>
