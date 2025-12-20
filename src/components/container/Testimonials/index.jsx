@@ -7,19 +7,19 @@ const Testimonials = () => {
       name: "John Lee",
       role: "Director at Innovate Corp",
       text: "A game-changer for our project. They turned it into reality efficiently and effectively.",
-      image: "https://i.pravatar.cc/150?u=john", // Ganti dengan path gambar asli
+      image: "/public/assets/images/Ellipse2.svg",
     },
     {
       name: "Sarah Tan",
       role: "Product Manager at Finovate",
       text: "The team delivered exactly what we needed — on time and with outstanding quality. Their attention to detail and communication were top-notch.",
-      image: "https://i.pravatar.cc/150?u=sarah",
+      image: "/public/assets/images/Ellipse1.svg",
     },
     {
       name: "Emily Chen",
       role: "Marketing Head at TechUp",
       text: "The collaboration was seamless, exceeding all our expectations. Their expertise truly made our project a successful reality.",
-      image: "https://i.pravatar.cc/150?u=emily",
+      image: "/public/assets/images/Ellipse3.svg",
     },
   ];
 
@@ -40,21 +40,22 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-24 bg-black overflow-hidden">
+    // Adaptif background: Putih di Light Mode, Hitam Pekat di Dark Mode
+    <section className="py-24 bg-white dark:bg-[#050505] transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* HEADER */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            What Partners Say About Working With Us
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            What Partners Say
           </h2>
-          <p className="text-gray-400 text-lg tracking-wide">
+          <p className="text-gray-500 dark:text-gray-400 text-lg tracking-wide">
             Trusted voices. Real experiences. Proven results.
           </p>
         </div>
 
         {/* SLIDER CONTAINER */}
-        <div className="relative flex justify-center items-center h-[500px]">
+        <div className="relative flex justify-center items-center h-[550px]">
           {testimonials.map((item, index) => {
             const position = getPosition(index);
             const isActive = position === "active";
@@ -63,56 +64,59 @@ const Testimonials = () => {
               <div
                 key={index}
                 className={`
-                  absolute transition-all duration-700 ease-in-out
-                  ${isActive ? "z-30 scale-100 opacity-100" : "z-10 scale-90 opacity-20 blur-[2px]"}
-                  ${position === "left" ? "-translate-x-[450px]" : ""}
-                  ${position === "right" ? "translate-x-[450px]" : ""}
-                  ${position === "hidden" ? "opacity-0 pointer-events-none" : ""}
+                  absolute transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]
+                  ${isActive ? "z-30 scale-100 opacity-100" : "z-10 scale-[0.85] opacity-30 blur-[1px]"}
+                  ${position === "left" ? "-translate-x-[110%] md:-translate-x-[450px]" : ""}
+                  ${position === "right" ? "translate-x-[110%] md:translate-x-[450px]" : ""}
+                  ${position === "hidden" ? "opacity-0 pointer-events-none scale-50" : ""}
                 `}
               >
                 <div className="relative group">
                   {/* CARD */}
                   <div className={`
-                    w-[500px] rounded-[2rem] p-12 transition-colors duration-500
-                    ${isActive ? "bg-[#0B0D11] border border-gray-800/50" : "bg-[#0B0D11]/50"}
+                    w-[340px] md:w-[500px] rounded-[2.5rem] p-8 md:p-12 transition-all duration-500
+                    ${isActive 
+                      ? "bg-gray-50 dark:bg-[#0B0D11] border border-gray-200 dark:border-white/10 shadow-2xl shadow-black/5" 
+                      : "bg-gray-100 dark:bg-[#0B0D11]/40 border border-transparent"}
                   `}>
                     
-                    {/* QUOTE ICON (SVG PERSIS GAMBAR) */}
-                    <div className="absolute -top-6 left-10">
+                    {/* QUOTE ICON */}
+                    <div className="absolute -top-6 left-10 drop-shadow-lg">
                       <svg width="60" height="45" viewBox="0 0 74 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 56V26.88C0 18.6667 2.14667 12.1333 6.44 7.28C10.8267 2.42667 16.9867 0 24.92 0V11.2C20.6267 11.2 17.5467 12.32 15.68 14.56C13.8133 16.8 12.88 19.9733 12.88 24.08H25.76V56H0ZM47.04 56V26.88C47.04 18.6667 49.1867 12.1333 53.48 7.28C57.8667 2.42667 64.0267 0 71.96 0V11.2C67.6667 11.2 64.5867 12.32 62.72 14.56C60.8533 16.8 59.92 19.9733 59.92 24.08H72.8V56H47.04Z" fill="#C84B31"/>
+                        <path d="M0 56V26.88C0 18.6667 2.14667 12.1333 6.44 7.28C10.8267 2.42667 16.9867 0 24.92 0V11.2C20.6267 11.2 17.5467 12.32 15.68 14.56C13.8133 16.8 12.88 19.9733 12.88 24.08H25.76V56H0ZM47.04 56V26.88C47.04 18.6667 49.1867 12.1333 53.48 7.28C57.8667 2.42667 64.0267 0 71.96 0V11.2C67.6667 11.2 64.5867 12.32 62.72 14.56C60.8533 16.8 59.92 19.9733 59.92 24.08H72.8V56H47.04Z" 
+                        fill="#C84B31"/>
                       </svg>
                     </div>
 
                     {/* STARS */}
                     <div className="flex justify-center gap-1.5 mb-8">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-[#FFB547] text-[#FFB547]" />
+                        <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
 
                     {/* TEXT */}
-                    <p className="text-white text-center text-xl leading-relaxed font-light mb-12 italic">
+                    <p className="text-gray-800 dark:text-gray-200 text-center text-lg md:text-xl leading-relaxed font-light mb-12 italic">
                       “{item.text}”
                     </p>
 
                     {/* AUTHOR INFO */}
-                    <div className="text-center">
-                      <p className="text-white font-semibold text-lg tracking-wide">
+                    <div className="text-center pb-4">
+                      <p className="text-gray-900 dark:text-white font-bold text-lg tracking-wide">
                         {item.name}
                       </p>
-                      <p className="text-[#C84B31] text-sm mt-1 uppercase tracking-widest font-medium">
+                      <p className="text-[#C84B31] text-xs mt-1 uppercase tracking-[0.2em] font-bold">
                         {item.role}
                       </p>
                     </div>
                   </div>
 
-                  {/* FLOATING IMAGE (MUNCUL HANYA SAAT AKTIF) */}
+                  {/* FLOATING IMAGE */}
                   <div className={`
                     absolute -bottom-10 left-1/2 -translate-x-1/2 transition-all duration-700 delay-300
                     ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
                   `}>
-                    <div className="w-20 h-20 rounded-full border-4 border-black overflow-hidden shadow-xl shadow-black/50">
+                    <div className="w-20 h-20 rounded-full border-[6px] border-white dark:border-[#050505] overflow-hidden shadow-xl ring-1 ring-black/5">
                       <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                     </div>
                   </div>
@@ -122,16 +126,16 @@ const Testimonials = () => {
           })}
         </div>
 
-        {/* DOTS (SAMA SEPERTI DI GAMBAR) */}
-        <div className="flex justify-center gap-3 mt-16">
+        {/* DOTS NAVIGATION */}
+        <div className="flex justify-center gap-3 mt-12">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`transition-all duration-300 rounded-full ${
+              className={`transition-all duration-500 rounded-full ${
                 index === activeIndex
-                  ? "bg-[#C84B31] w-8 h-2.5"
-                  : "bg-gray-800 w-2.5 h-2.5 hover:bg-gray-600"
+                  ? "bg-[#C84B31] w-10 h-2"
+                  : "bg-gray-300 dark:bg-gray-800 w-2 h-2 hover:bg-[#C84B31]/50"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
