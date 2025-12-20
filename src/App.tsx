@@ -12,6 +12,8 @@ import Industry from "./components/container/Industry/index";
 import Portfolio from "./components/container/Portfolio/index";
 import Testimonials from "./components/container/Testimonials/index";
 import FAQSection from "./components/container/FAQSection/index";
+import Contact from "./components/container/Contact/index";
+import Footer from "./components/container/Footer/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +57,8 @@ function App() {
         <Portfolio isDark={isDark} />
         <Testimonials isDark={isDark} />
         <FAQSection isDark={isDark} />
+        <Contact isDark={isDark} />
+        <Footer isDark={isDark} />
       </div>
     </div>
   );
