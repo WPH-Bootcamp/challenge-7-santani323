@@ -11,7 +11,7 @@ const Industry = () => {
       title: 'Fintech',
       description:
         'We build secure, scalable, and compliant fintech solutions — from digital wallets to core banking systems — tailored to modern financial needs.',
-      image: '/assets/images/fintech.svg'
+      image: '/assets/images/fitc.svg'
     },
     {
       name: 'E-Commerce',
@@ -19,7 +19,7 @@ const Industry = () => {
       title: 'E-Commerce',
       description:
         'Powerful e-commerce platforms designed to scale your business with seamless checkout, inventory control, and customer experience.',
-      image: '/assets/images/ecommerce.svg'
+      image: '/assets/images/ecm.svg'
     },
     {
       name: 'Healthcare',
@@ -27,7 +27,7 @@ const Industry = () => {
       title: 'Healthcare',
       description:
         'Secure healthcare platforms including telemedicine, patient management, and medical record systems compliant with regulations.',
-      image: '/assets/images/healthcare.svg'
+      image: '/assets/images/hlt.svg'
     }
   ];
 

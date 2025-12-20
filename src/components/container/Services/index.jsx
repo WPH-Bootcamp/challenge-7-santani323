@@ -1,9 +1,9 @@
 import React from "react";
 
-const Services = () => {
+const Services = ({ isDark }) => {
   const services = [
     {
-      icon: "assets/images/Website.svg",
+      icon: "assets/images/Web.svg",
       title: "Web Development",
       description: "Build fast, scalable, and SEO-friendly websites.",
     },
@@ -18,7 +18,7 @@ const Services = () => {
       description: "Delight users with intuitive and beautiful interfaces.",
     },
     {
-      icon: "assets/images/Cloud.svg",
+      icon: "assets/images/Cold.svg",
       title: "Cloud Solutions",
       description: "Secure and flexible cloud infrastructure for your growth.",
     },
@@ -43,7 +43,7 @@ const Services = () => {
       description: "Ensure performance with rigorous testing frameworks.",
     },
     {
-      icon: "assets/images/Consulting.svg",
+      icon: "assets/images/Cost.svg",
       title: "IT Consulting & Support",
       description: "Make smarter tech decisions with expert guidance.",
     },

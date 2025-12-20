@@ -9,6 +9,7 @@ import Statistics from "./components/container/Statistics/index";
 import Process from "./components/container/Process/index";
 import Services from "./components/container/Services/index";
 import Industry from "./components/container/Industry/index";
+import Portfolio from "./components/container/Portfolio/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function App() {
         <Process isDark={isDark} />
         <Services isDark={isDark} />
         <Industry isDark={isDark} />
+        <Portfolio isDark={isDark} />
       </div>
     </div>
   );
