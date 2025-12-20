@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme, setTheme } from "./store/slices/themeSlice";
 import "./App.css";
@@ -14,12 +14,15 @@ import Testimonials from "./components/container/Testimonials/index";
 import FAQSection from "./components/container/FAQSection/index";
 import Contact from "./components/container/Contact/index";
 import Footer from "./components/container/Footer/index";
+import SuccessModal from "./components/container/SuccessModal";  
 
 function App() {
   const dispatch = useDispatch();
   const isDark = useSelector((state: any) => state.theme.isDark);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    // 1. Sinkronisasi Tema dengan LocalStorage & Class HTML
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") {
       dispatch(setTheme(false));
@@ -28,7 +31,22 @@ function App() {
       dispatch(setTheme(true));
       document.documentElement.classList.add("dark");
     }
+
+    // 2. Logika Pop-up Modal (Selalu muncul saat refresh)
+    // Modal akan muncul 1.5 detik setelah komponen dimuat
+    const timer = setTimeout(() => {
+      setShowModal(true);
+    }, 1500);
+
+    // Cleanup timer jika komponen unmount sebelum 1.5 detik
+    return () => clearTimeout(timer);
   }, [dispatch]);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    // Kita tidak lagi menyimpan "hasSeenModal" di sessionStorage
+    // Agar saat refresh, useEffect di atas tetap menjalankan setShowModal(true)
+  };
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
@@ -43,20 +61,25 @@ function App() {
   };
 
   return (
-    <div id="service" className={`App ${isDark ? "dark" : ""} overflow-x-hidden`}>
-      {/* Background utama yang selalu Full Width */}
-      <div className="min-h-screen bg-[#fcfcfc] dark:bg-[#050505] transition-colors duration-500">
+    <div className={`App ${isDark ? "dark" : ""} relative`}>
+      
+      {/* SUCCESS MODAL - Akan muncul setiap kali halaman direfresh */}
+      <SuccessModal
+        isOpen={showModal}
+        onClose={handleCloseModal}
+        isDark={isDark}
+      />
+
+      <div className={`min-h-screen ${!isDark ? 'bg-[#fcfcfc]' : 'bg-[#050505]'} text-slate-900 dark:text-white transition-colors duration-500 overflow-x-hidden`}>
         
-        {/* Navbar biasanya melebar penuh namun konten di dalamnya dibungkus container */}
         <Navbar isDark={isDark} toggleTheme={handleToggleTheme} />
 
         <main>
-          {/* Section Hero & TrustedBy seringkali butuh visual Full Width */}
           <Hero isDark={isDark} />
-          
-          {/* Container Wrapper untuk bagian konten agar konsisten di tengah */}
-          <div className="max-w-[1440px] mx-auto overflow-x-hidden">
+
+          <div className="max-w-[1440px] mx-auto">
             <TrustedBy isDark={isDark} />
+            
             <Statistics isDark={isDark} />
             <Process isDark={isDark} />
             <Services isDark={isDark} />
