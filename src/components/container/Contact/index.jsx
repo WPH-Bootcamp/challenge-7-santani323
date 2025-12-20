@@ -52,7 +52,7 @@ const Contact = ({ isDark = true }) => {
   };
 
   return (
-    <section className={`${theme.section} py-20 px-4 transition-colors duration-300`}>
+    <section id="contact" className={`${theme.section} py-20 px-4 transition-colors duration-300`}>
       <div className="max-w-3xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-12">

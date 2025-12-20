@@ -40,7 +40,7 @@ const Testimonials = ({ isDark = true }) => {
   };
 
   return (
-    <section className={`py-24 transition-colors duration-700 overflow-hidden ${
+    <section id="testimonials" className={`py-24 transition-colors duration-700 overflow-hidden ${
       isDark ? "bg-[#050505]" : "bg-white"
     }`}>
       <div className="max-w-7xl mx-auto px-6">

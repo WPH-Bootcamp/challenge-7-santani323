@@ -1,5 +1,5 @@
-import React from 'react';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import React from "react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 const Footer = ({ isDark = true }) => {
   // Konfigurasi Tema
@@ -7,30 +7,40 @@ const Footer = ({ isDark = true }) => {
     outerBg: isDark ? "bg-black" : "bg-white",
     innerCard: isDark ? "bg-[#0B0D11]" : "bg-gray-100",
     textMain: isDark ? "text-white" : "text-slate-900",
-    textNav: isDark ? "text-gray-400 hover:text-white" : "text-gray-600 hover:text-black",
+    textNav: isDark
+      ? "text-gray-400 hover:text-white"
+      : "text-gray-600 hover:text-black",
     border: isDark ? "border-gray-800" : "border-gray-300",
     divider: isDark ? "bg-gray-800/50" : "bg-gray-300",
   };
 
   return (
-    <footer className={`${theme.outerBg} py-10 px-6 md:px-12 transition-colors duration-300`}>
+    <footer
+      className={`${theme.outerBg} py-10 px-6 md:px-12 transition-colors duration-300`}
+    >
       {/* Container utama dengan background dinamis */}
-      <div className={`max-w-7xl mx-auto ${theme.innerCard} rounded-[2.5rem] p-10 md:p-16 relative overflow-hidden transition-colors duration-300`}>
-        
+      <div
+        className={`max-w-7xl mx-auto ${theme.innerCard} rounded-[2.5rem] p-10 md:p-16 relative overflow-hidden transition-colors duration-300`}
+      >
         {/* Bagian Atas: Heading & Logo */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-16">
-          <h2 className={`text-4xl md:text-5xl font-bold ${theme.textMain} leading-tight uppercase tracking-tight max-w-sm`}>
+          <h3
+            className={`text-4xl md:text-5xl font-bold ${theme.textMain} leading-tight uppercase tracking-tight max-w-sm`}
+          >
             Let's Discuss Your Ideas
-          </h2>
-          
+          </h3>
+
           {/* Logo Brand */}
           <div className="flex items-center space-x-3 mt-8 md:mt-0">
-            <div className="relative">
-              {/* Icon Logo tetap oranye karena ini Identitas Brand */}
-              <div className="w-6 h-6 bg-[#FF6A00] rounded-sm rotate-12 absolute -left-1"></div>
-              <div className="w-6 h-6 bg-[#FF6A00] rounded-sm opacity-80"></div>
-            </div>
-            <span className={`${theme.textMain} font-bold text-2xl tracking-wide ml-2`}>Your Logo</span>
+            <img
+              src={
+                isDark
+                  ? "/assets/images/logo-dark.svg"
+                  : "/assets/images/logo-light.svg"
+              }
+              alt="Logo"
+              className="h-9 w-auto object-contain"
+            />
           </div>
         </div>
 
@@ -39,27 +49,28 @@ const Footer = ({ isDark = true }) => {
 
         {/* Bagian Bawah: Navigasi & Social Icons */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          
           {/* Menu Navigasi */}
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4">
-            {['About', 'Service', 'Projects', 'Testimonials', 'FAQ'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
-                className={`${theme.textNav} transition-colors duration-300 text-sm font-medium`}
-              >
-                {item}
-              </a>
-            ))}
+            {["About", "Service", "Projects", "Testimonials", "FAQ"].map(
+              (item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className={`${theme.textNav} transition-colors duration-300 text-sm font-medium`}
+                >
+                  {item}
+                </a>
+              )
+            )}
           </nav>
 
           {/* Social Media Icons */}
           <div className="flex items-center gap-4">
             {[
-              { icon: Facebook, href: '#' },
-              { icon: Instagram, href: '#' },
-              { icon: Linkedin, href: '#' },
-              { icon: Twitter, href: '#' }
+              { icon: Facebook, href: "#" },
+              { icon: Instagram, href: "#" },
+              { icon: Linkedin, href: "#" },
+              { icon: Twitter, href: "#" },
             ].map((social, index) => {
               const Icon = social.icon;
               return (
@@ -75,9 +86,13 @@ const Footer = ({ isDark = true }) => {
           </div>
         </div>
       </div>
-      
+
       {/* Copyright area (Opsional) */}
-      <div className={`text-center mt-8 text-xs ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>
+      <div
+        className={`text-center mt-8 text-xs ${
+          isDark ? "text-gray-600" : "text-gray-400"
+        }`}
+      >
         © {new Date().getFullYear()} Your Agency. All rights reserved.
       </div>
     </footer>

@@ -30,7 +30,7 @@ const steps = [
 
 const Process = ({ isDark }) => {
   return (
-    <section className={`w-full min-h-screen py-20 px-4 transition-colors duration-500 ${
+    <section id="process" className={`w-full min-h-screen py-20 px-4 transition-colors duration-500 ${
       isDark ? "bg-[#050505] text-white" : "bg-gray-50 text-gray-900"
     }`}>
       {/* Heading */}

@@ -42,7 +42,7 @@ const FAQSection = ({ isDark = true }) => {
   };
 
   return (
-    <section className={`${theme.sectionBg} py-20 px-6 md:px-12 font-sans transition-colors duration-300`}>
+    <section id="faq" className={`${theme.sectionBg} py-20 px-6 md:px-12 font-sans transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto">
         
         {/* Header Section */}

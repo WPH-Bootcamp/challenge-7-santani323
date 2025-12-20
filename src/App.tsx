@@ -43,7 +43,7 @@ function App() {
   };
 
   return (
-    <div className={`App ${isDark ? "dark" : ""} overflow-x-hidden`}>
+    <div id="service" className={`App ${isDark ? "dark" : ""} overflow-x-hidden`}>
       {/* Background utama yang selalu Full Width */}
       <div className="min-h-screen bg-[#fcfcfc] dark:bg-[#050505] transition-colors duration-500">
         
