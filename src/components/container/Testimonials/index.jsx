@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 
-const Testimonials = () => {
+const Testimonials = ({ isDark = true }) => {
   const testimonials = [
     {
       name: "John Lee",
       role: "Director at Innovate Corp",
       text: "A game-changer for our project. They turned it into reality efficiently and effectively.",
-      image: "/public/assets/images/Ellipse2.svg",
+      image: "/assets/images/Ellipse2.svg",
     },
     {
       name: "Sarah Tan",
       role: "Product Manager at Finovate",
       text: "The team delivered exactly what we needed — on time and with outstanding quality. Their attention to detail and communication were top-notch.",
-      image: "/public/assets/images/Ellipse1.svg",
+      image: "/assets/images/Ellipse1.svg",
     },
     {
       name: "Emily Chen",
       role: "Marketing Head at TechUp",
       text: "The collaboration was seamless, exceeding all our expectations. Their expertise truly made our project a successful reality.",
-      image: "/public/assets/images/Ellipse3.svg",
+      image: "/assets/images/Ellipse3.svg",
     },
   ];
 
@@ -40,22 +40,27 @@ const Testimonials = () => {
   };
 
   return (
-    // Adaptif background: Putih di Light Mode, Hitam Pekat di Dark Mode
-    <section className="py-24 bg-white dark:bg-[#050505] transition-colors duration-500 overflow-hidden">
+    <section className={`py-24 transition-colors duration-700 overflow-hidden ${
+      isDark ? "bg-[#050505]" : "bg-white"
+    }`}>
       <div className="max-w-7xl mx-auto px-6">
         
         {/* HEADER */}
         <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 tracking-tight ${
+            isDark ? "text-white" : "text-gray-900"
+          }`}>
             What Partners Say
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 text-lg tracking-wide">
+          <p className={`text-lg max-w-2xl mx-auto ${
+            isDark ? "text-gray-400" : "text-gray-600"
+          }`}>
             Trusted voices. Real experiences. Proven results.
           </p>
         </div>
 
         {/* SLIDER CONTAINER */}
-        <div className="relative flex justify-center items-center h-[550px]">
+        <div className="relative flex justify-center items-center h-[500px] md:h-[550px]">
           {testimonials.map((item, index) => {
             const position = getPosition(index);
             const isActive = position === "active";
@@ -64,24 +69,28 @@ const Testimonials = () => {
               <div
                 key={index}
                 className={`
-                  absolute transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]
-                  ${isActive ? "z-30 scale-100 opacity-100" : "z-10 scale-[0.85] opacity-30 blur-[1px]"}
-                  ${position === "left" ? "-translate-x-[110%] md:-translate-x-[450px]" : ""}
-                  ${position === "right" ? "translate-x-[110%] md:translate-x-[450px]" : ""}
-                  ${position === "hidden" ? "opacity-0 pointer-events-none scale-50" : ""}
+                  absolute transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]
+                  ${isActive ? "z-30 scale-100 opacity-100" : "z-10 scale-[0.8] opacity-0 md:opacity-20 blur-[2px]"}
+                  ${position === "left" ? "-translate-x-[100%] md:-translate-x-[450px]" : ""}
+                  ${position === "right" ? "translate-x-[100%] md:translate-x-[450px]" : ""}
+                  ${position === "hidden" ? "opacity-0 pointer-events-none" : ""}
                 `}
               >
                 <div className="relative group">
                   {/* CARD */}
                   <div className={`
-                    w-[340px] md:w-[500px] rounded-[2.5rem] p-8 md:p-12 transition-all duration-500
+                    w-[320px] md:w-[500px] rounded-[2.5rem] p-8 md:p-12 transition-all duration-500 border
                     ${isActive 
-                      ? "bg-gray-50 dark:bg-[#0B0D11] border border-gray-200 dark:border-white/10 shadow-2xl shadow-black/5" 
-                      : "bg-gray-100 dark:bg-[#0B0D11]/40 border border-transparent"}
+                      ? isDark 
+                        ? "bg-[#0B0D11] border-white/10 shadow-none" 
+                        : "bg-gray-50 border-gray-200 shadow-xl"
+                      : isDark
+                        ? "bg-[#0B0D11]/40 border-transparent"
+                        : "bg-gray-100/50 border-transparent"}
                   `}>
                     
                     {/* QUOTE ICON */}
-                    <div className="absolute -top-6 left-10 drop-shadow-lg">
+                    <div className={`absolute -top-6 left-10 transition-transform duration-500 ${isActive ? "scale-100" : "scale-75"}`}>
                       <svg width="60" height="45" viewBox="0 0 74 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 56V26.88C0 18.6667 2.14667 12.1333 6.44 7.28C10.8267 2.42667 16.9867 0 24.92 0V11.2C20.6267 11.2 17.5467 12.32 15.68 14.56C13.8133 16.8 12.88 19.9733 12.88 24.08H25.76V56H0ZM47.04 56V26.88C47.04 18.6667 49.1867 12.1333 53.48 7.28C57.8667 2.42667 64.0267 0 71.96 0V11.2C67.6667 11.2 64.5867 12.32 62.72 14.56C60.8533 16.8 59.92 19.9733 59.92 24.08H72.8V56H47.04Z" 
                         fill="#C84B31"/>
@@ -96,13 +105,17 @@ const Testimonials = () => {
                     </div>
 
                     {/* TEXT */}
-                    <p className="text-gray-800 dark:text-gray-200 text-center text-lg md:text-xl leading-relaxed font-light mb-12 italic">
+                    <p className={`text-center text-lg md:text-xl leading-relaxed font-normal mb-10 italic transition-colors duration-500 ${
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    }`}>
                       “{item.text}”
                     </p>
 
                     {/* AUTHOR INFO */}
-                    <div className="text-center pb-4">
-                      <p className="text-gray-900 dark:text-white font-bold text-lg tracking-wide">
+                    <div className="text-center">
+                      <p className={`font-bold text-lg transition-colors duration-500 ${
+                        isDark ? "text-white" : "text-gray-900"
+                      }`}>
                         {item.name}
                       </p>
                       <p className="text-[#C84B31] text-xs mt-1 uppercase tracking-[0.2em] font-bold">
@@ -113,11 +126,15 @@ const Testimonials = () => {
 
                   {/* FLOATING IMAGE */}
                   <div className={`
-                    absolute -bottom-10 left-1/2 -translate-x-1/2 transition-all duration-700 delay-300
-                    ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+                    absolute -bottom-10 left-1/2 -translate-x-1/2 transition-all duration-700 delay-150
+                    ${isActive ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-75"}
                   `}>
-                    <div className="w-20 h-20 rounded-full border-[6px] border-white dark:border-[#050505] overflow-hidden shadow-xl ring-1 ring-black/5">
-                      <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                    <div className={`w-20 h-20 rounded-full border-[6px] overflow-hidden shadow-2xl ring-1 transition-colors duration-500 ${
+                      isDark ? "border-[#050505] ring-white/5" : "border-white ring-black/5"
+                    }`}>
+                      <img src={item.image} alt={item.name} className={`w-full h-full object-cover ${
+                        isDark ? "bg-gray-800" : "bg-gray-200"
+                      }`} />
                     </div>
                   </div>
                 </div>
@@ -127,15 +144,17 @@ const Testimonials = () => {
         </div>
 
         {/* DOTS NAVIGATION */}
-        <div className="flex justify-center gap-3 mt-12">
+        <div className="flex justify-center gap-3 mt-16">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
               className={`transition-all duration-500 rounded-full ${
                 index === activeIndex
-                  ? "bg-[#C84B31] w-10 h-2"
-                  : "bg-gray-300 dark:bg-gray-800 w-2 h-2 hover:bg-[#C84B31]/50"
+                  ? "bg-[#C84B31] w-10 h-2.5"
+                  : isDark 
+                    ? "bg-gray-800 hover:bg-gray-600 w-2.5 h-2.5" 
+                    : "bg-gray-300 hover:bg-gray-400 w-2.5 h-2.5"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
