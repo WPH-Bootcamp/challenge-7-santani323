@@ -1,57 +1,74 @@
 import React from "react";
-import { ExternalLink } from "lucide-react";
 
-const Portfolio = ({ isDark }) => {
+const Portfolio = () => {
   const projects = [
     {
-      title: "FinPay Mobile App",
-      category: "Fintech",
-      image: "bg-gradient-to-br from-gray-700 to-gray-900",
+      title: "Portofolio 1",
+      category: "Landing Page",
+      image: "/assets/images/porto1.png",
+    },
+    {
+      title: "Portofolio 2",
+      category: "Landing Page",
+      image: "/assets/images/image215.png",
+    },
+    {
+      title: "Portofolio 3",
+      category: "Landing Page",
+      image: "/assets/images/image216.png",
     },
   ];
 
   return (
-    <section id="portfolio" className="py-20 bg-[#0B0B0E] dark:bg-[#0B0B0E]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section
+      id="portfolio"
+      className="py-24 bg-black"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+
+        {/* HEADER */}
+        <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             From Vision to Launch! Projects We’re Proud Of
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
             Take a closer look at our recent work powering startups,
             enterprises, and everything in between.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* PORTFOLIO GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-14">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-[#121216] rounded-2xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl group cursor-pointer"
+              className="group cursor-pointer"
             >
-              {/* Project Image */}
-              <div className={`h-64 ${project.image} relative`}>
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-300 flex items-center justify-center">
-                  <button className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-6 py-3 bg-[#FF6A00] text-white rounded-full font-medium flex items-center gap-2">
-                    View Project
-                    <ExternalLink className="w-4 h-4" />
-                  </button>
-                </div>
+
+              {/* IMAGE */}
+              <div className="relative h-[420px] rounded-2xl overflow-hidden bg-[#0f0f12]">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
 
-              {/* Project Info */}
-              <div className="p-6">
-                <div className="inline-block px-3 py-1 bg-[#FF6A00]/20 text-[#FF6A00] text-xs font-medium rounded-full mb-3">
+              {/* TEXT */}
+              <div className="mt-6">
+                <p className="text-[#FF6A00] text-xs mb-1">
                   {project.category}
-                </div>
-                <h3 className="text-xl font-bold text-white">
+                </p>
+                <h3 className="text-white font-semibold text-base">
                   {project.title}
                 </h3>
               </div>
+
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
