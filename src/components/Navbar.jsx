@@ -20,7 +20,7 @@ const Navbar = ({ isDark, toggleTheme }) => {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <img
-              src="/assets/images/logo.svg"
+              src={ !isDark ? "/assets/images/logo-light.svg" : "/assets/images/logo-dark.svg" }
               alt="Logo"
               className="w-50 h-10 object-contain rounded-lg"
             />
