@@ -19,24 +19,40 @@ const stats = [
   },
 ];
 
-const Statistics = () => {
+const Statistics = ({ isDark }) => {
   return (
-    <section className="py-16 md:py-24 bg-[#0B0B0E] dark:bg-[#0B0B0E] relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-4 flex flex-col items-center">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white text-center mb-2">
+    <section className={`py-16 md:py-24 relative overflow-hidden transition-colors duration-500 ${
+      isDark ? "bg-[#0B0B0E]" : "bg-gray-50"
+    }`}>
+      <div className="max-w-5xl mx-auto px-6 flex flex-col items-center">
+        <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-3 ${
+          isDark ? "text-white" : "text-gray-900"
+        }`}>
           End-to-End IT Solutions That Drive Results
         </h2>
-        <p className="text-gray-400 text-center mb-12 max-w-xl text-sm md:text-base">
+        <p className={`text-center mb-12 max-w-xl text-sm md:text-base ${
+          isDark ? "text-gray-400" : "text-gray-600"
+        }`}>
           From strategy to execution, we deliver solutions that grow your business.
         </p>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+
+        {/* Grid System: 2 Kolom di Mobile, 4 Kolom di Desktop */}
+        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-[#121216] dark:bg-[#121216] rounded-full flex flex-col items-center justify-center aspect-square min-h-[180px] max-w-[220px] mx-auto shadow-lg shadow-black/10"
+              className={`flex flex-col items-center justify-center aspect-square rounded-full border transition-all duration-300 shadow-xl ${
+                isDark 
+                ? "bg-[#121216] border-gray-800 shadow-black/20" 
+                : "bg-white border-gray-100 shadow-gray-200/50"
+              }`}
             >
-              <span className={`text-[2.2rem] md:text-4xl font-bold mb-2 ${stat.value === '100%' ? 'text-[#FF6A00]' : 'text-[#FF6A00]'}`}>{stat.value}</span>
-              <span className="text-gray-400 text-base md:text-lg text-center px-2 leading-tight">
+              <span className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-1 text-[#FF6A00]">
+                {stat.value}
+              </span>
+              <span className={`text-[10px] sm:text-xs md:text-sm lg:text-base font-medium text-center px-4 leading-tight ${
+                isDark ? "text-gray-400" : "text-gray-500"
+              }`}>
                 {stat.label}
               </span>
             </div>

@@ -20,7 +20,6 @@ function App() {
   const isDark = useSelector((state: any) => state.theme.isDark);
 
   useEffect(() => {
-    // Load theme from localStorage
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") {
       dispatch(setTheme(false));
@@ -29,7 +28,6 @@ function App() {
       dispatch(setTheme(true));
       document.documentElement.classList.add("dark");
     }
-    // eslint-disable-next-line
   }, [dispatch]);
 
   const handleToggleTheme = () => {
@@ -45,19 +43,31 @@ function App() {
   };
 
   return (
-    <div className={`App ${isDark ? "dark" : ""}`}>
-      <div className="min-h-screen bg-[#f9f9fb] dark:bg-[#0B0B0E] transition-colors duration-300">
+    <div className={`App ${isDark ? "dark" : ""} overflow-x-hidden`}>
+      {/* Background utama yang selalu Full Width */}
+      <div className="min-h-screen bg-[#fcfcfc] dark:bg-[#050505] transition-colors duration-500">
+        
+        {/* Navbar biasanya melebar penuh namun konten di dalamnya dibungkus container */}
         <Navbar isDark={isDark} toggleTheme={handleToggleTheme} />
-        <Hero isDark={isDark} />
-        <TrustedBy isDark={isDark} />
-        <Statistics isDark={isDark} />
-        <Process isDark={isDark} />
-        <Services isDark={isDark} />
-        <Industry isDark={isDark} />
-        <Portfolio isDark={isDark} />
-        <Testimonials isDark={isDark} />
-        <FAQSection isDark={isDark} />
-        <Contact isDark={isDark} />
+
+        <main>
+          {/* Section Hero & TrustedBy seringkali butuh visual Full Width */}
+          <Hero isDark={isDark} />
+          
+          {/* Container Wrapper untuk bagian konten agar konsisten di tengah */}
+          <div className="max-w-[1440px] mx-auto overflow-x-hidden">
+            <TrustedBy isDark={isDark} />
+            <Statistics isDark={isDark} />
+            <Process isDark={isDark} />
+            <Services isDark={isDark} />
+            <Industry isDark={isDark} />
+            <Portfolio isDark={isDark} />
+            <Testimonials isDark={isDark} />
+            <FAQSection isDark={isDark} />
+            <Contact isDark={isDark} />
+          </div>
+        </main>
+
         <Footer isDark={isDark} />
       </div>
     </div>
